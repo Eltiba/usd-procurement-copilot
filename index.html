@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>USD Procurement Copilot Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Readex+Pro:wght@500;600&display=swap">
+<style>
+/* Layout: one centred card that hands visitors to the live copilot. */
+:root{
+  --bg:#f3f5f3; --surface:#ffffff; --sunk:#e9eeeb; --line:#d5ddd9;
+  --ink:#13262a; --muted:#56696b;
+  --teal:#0d6b63; --teal-ink:#ffffff; --teal-soft:#d9ebe7;
+  --ok:#2e7d32; --ok-soft:#dcefdc; --crit:#b3261e; --crit-soft:#f8dedb;
+  --f-display:"Readex Pro","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1719; --surface:#152225; --sunk:#1b2b2e; --line:#2a3d40;
+  --ink:#e4eeec; --muted:#9db0b0;
+  --teal:#3fb3a5; --teal-ink:#06201d; --teal-soft:#16332f;
+  --ok:#7fcf84; --ok-soft:#1b3320; --crit:#f1867c; --crit-soft:#3d1c1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1719; --surface:#152225; --sunk:#1b2b2e; --line:#2a3d40;
+  --ink:#e4eeec; --muted:#9db0b0;
+  --teal:#3fb3a5; --teal-ink:#06201d; --teal-soft:#16332f;
+  --ok:#7fcf84; --ok-soft:#1b3320; --crit:#f1867c; --crit-soft:#3d1c1a; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--f-body);min-height:100vh;display:grid;place-items:center;padding-block:32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.card{width:100%;max-width:720px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px;display:grid;gap:20px}
+.brand{display:flex;gap:12px;align-items:center}
+.mark{width:44px;height:44px;border-radius:10px;background:var(--teal);color:var(--teal-ink);display:grid;place-items:center;font:500 14px var(--f-mono);flex:none}
+h1{font:600 1.5rem/1.25 var(--f-display);margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:0;font-size:.92rem}
+.lede{margin:0;max-width:62ch}
+ul{margin:0;padding-inline-start:20px;display:grid;gap:8px}
+.calls{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:4px 12px;border-radius:999px;font-size:.85rem;font-weight:600}
+.chip.w{background:var(--ok-soft);color:var(--ok)} .chip.t{background:var(--sunk);color:var(--muted)} .chip.b{background:var(--crit-soft);color:var(--crit)}
+.cta{display:inline-flex;justify-content:center;align-items:center;gap:8px;background:var(--teal);color:var(--teal-ink);text-decoration:none;font:600 1.05rem var(--f-display);padding:14px 22px;border-radius:10px}
+.cta:hover{filter:brightness(1.08)} .cta:focus-visible{outline:3px solid var(--teal-soft);outline-offset:2px}
+.en{direction:ltr;text-align:left;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:.92rem;display:grid;gap:8px}
+.en b{color:var(--ink)}
+.snap{background:var(--sunk);border-radius:12px;padding:16px;display:grid;gap:14px;min-width:0}
+.snap-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.eyebrow{font-size:.8rem;font-weight:600;color:var(--muted)}
+.snap-why{margin:0;max-width:62ch}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.gauge{display:grid;gap:4px}
+.g-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:.88rem} .g-meta b{color:var(--ink)}
+.bar{position:relative;height:10px;border-radius:999px;background:linear-gradient(to left,var(--ok-soft),var(--surface) 50%,var(--crit-soft))}
+.mid{position:absolute;inset-block:-3px;inset-inline-start:50%;width:1px;background:var(--muted)}
+.pin{position:absolute;top:50%;width:16px;height:16px;border-radius:50%;background:var(--ink);border:3px solid var(--surface);transform:translate(50%,-50%)}
+.ends{display:flex;justify-content:space-between;font-size:.76rem;color:var(--muted)}
+.tiles{display:grid;gap:10px;grid-template-columns:repeat(4,1fr)}
+@media(max-width:640px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.tile .k{font-size:.8rem;color:var(--muted)} .tile .v{font-size:1.3rem} .tile .s{font-size:.78rem;color:var(--muted);font-family:var(--f-mono)}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th{font-size:.76rem;color:var(--muted);text-align:start;padding:6px 8px;border-bottom:1px solid var(--line)}
+td{padding:6px 8px;border-bottom:1px solid var(--line)} .r{text-align:end}
+.sc{display:inline-block;min-width:2.8em;text-align:center;padding:1px 8px;border-radius:999px;font:500 .8rem var(--f-mono)}
+.sc.dn{background:var(--ok-soft);color:var(--ok)} .sc.up{background:var(--crit-soft);color:var(--crit)} .sc.fl{background:var(--surface);color:var(--muted)}
+.track{margin:0;font-size:.92rem}
+.url{font-family:var(--f-mono);font-size:.8rem;word-break:break-all;color:var(--muted)}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="brand"><div class="mark">$/E£</div><div><h1>USD Procurement Copilot · مساعد قرار شراء الدولار</h1><p class="sub">Mustafa Al-Khateib · O11 · Gold Grain Trading</p></div></div>
+
+  <p class="lede">المساعد بيقول لمستورد قمح مصري إمتى يدبّر الدولار، بناءً على التوقع والأخبار بس، مش على مواعيد السداد. وبيسجّل كل قرار ويراجعه بعد 3 و7 أيام عشان تعرف تثق فيه قد إيه.</p>
+
+  <div class="calls"><span class="chip w">استنى — ما تدبّرش</span><span class="chip t">دبّر دفعة</span><span class="chip b">دبّر بكل فلوسك</span></div>
+
+  <ul>
+    <li>مؤشر ضغط على الدولار من −100 لـ+100 من 8 عوامل: الأموال الساخنة (الأجانب في الأذون)، الفائدة، الفيدرالي، البترول، إيران والمنطقة، صندوق النقد، الاقتصاد، وحركة السعر.</li>
+    <li>توقع لسعر بيع ADIB بكرة، وبعد 3 أيام، وبعد أسبوع، بنطاق.</li>
+    <li>قراءة جديدة 3 مرات يومياً (الأحد – الخميس) بمصادر لكل خبر، وإشعار على الموبايل.</li>
+    <li>سجل دقة لكل قرار، وتنبيهات آخر يوم سداد للعلم بس.</li>
+  </ul>
+
+  <section class="snap" aria-label="آخر قرار">
+    <div class="snap-head"><span class="eyebrow">آخر قرار · الأحد 15 نوفمبر 2026 · 9:27 ص</span><span class="chip w">استنى — ما تدبّرش</span></div>
+    <p class="snap-why">الأجانب اشتروا أذون خزانة بحوالي 345 مليون دولار يوم 12 نوفمبر، والسعر العالمي ثابت حوالي 53.43. التضخم الأمريكي العالي بيدعم الدولار، فالصورة مختلطة شوية، لكن الكفة مع الانتظار.</p>
+    <div class="gauge" aria-label="مؤشر الضغط على الدولار −44">
+      <div class="g-meta"><span>مؤشر الضغط على الدولار</span><b class="num">−44</b><span class="chip t">الثقة 60%</span></div>
+      <div class="bar"><span class="mid"></span><span class="pin" style="inset-inline-start:28%"></span></div>
+      <div class="ends"><span>−100 الدولار ينزل</span><span>الدولار يطلع +100</span></div>
+    </div>
+    <div class="tiles">
+      <div class="tile"><div class="k">البنك الأهلي الآن</div><div class="v num">53.37</div><div class="s">السعر العالمي 53.43</div></div>
+      <div class="tile"><div class="k">بكرة</div><div class="v num">53.46</div><div class="s">52.86 – 54.07</div></div>
+      <div class="tile"><div class="k">بعد 3 أيام</div><div class="v num">53.39</div><div class="s">52.35 – 54.44</div></div>
+      <div class="tile"><div class="k">بعد أسبوع</div><div class="v num">53.25</div><div class="s">51.66 – 54.85</div></div>
+    </div>
+    <div class="scroll"><table>
+      <thead><tr><th>العامل</th><th>الدرجة</th><th class="r">الوزن</th></tr></thead>
+      <tbody>
+        <tr><td>الأموال الساخنة (الأجانب في الأذون)</td><td><span class="sc dn">−2</span></td><td class="r num">25%</td></tr>
+        <tr><td>فائدة المركزي وعائد الأذون</td><td><span class="sc dn">−1.5</span></td><td class="r num">15%</td></tr>
+        <tr><td>التضخم الأمريكي والفيدرالي</td><td><span class="sc up">+1.5</span></td><td class="r num">15%</td></tr>
+        <tr><td>إيران وهرمز والمنطقة</td><td><span class="sc dn">−1</span></td><td class="r num">15%</td></tr>
+        <tr><td>أسعار البترول</td><td><span class="sc dn">−1</span></td><td class="r num">10%</td></tr>
+        <tr><td>صندوق النقد والبنك الدولي والاحتياطي</td><td><span class="sc dn">−1</span></td><td class="r num">10%</td></tr>
+        <tr><td>الاقتصاد الحقيقي وتقييم الجنيه</td><td><span class="sc fl">0</span></td><td class="r num">5%</td></tr>
+        <tr><td>حركة السعر</td><td><span class="sc dn">−0.5</span></td><td class="r num">5%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="track"><b>سجل الدقة:</b> 4 من 4 قرارات "استنى" (10 و12 نوفمبر) اتراجعت بعد 3 أيام وطلعت صح: سعر بيع ADIB كان 54.05 ووصل حوالي 53.50.</p>
+  </section>
+
+  <a class="cta" href="https://claude.ai/artifact/QUhsx4wbq5ujuuKtq1XSpV" target="_blank" rel="noopener">افتح النسخة الحية من المساعد ↗</a>
+  <span class="url">claude.ai/artifact/QUhsx4wbq5ujuuKtq1XSpV · البيانات الحية بتظهر بعد تسجيل الدخول بحساب Claude</span>
+
+  <div class="en">
+    <p style="margin:0"><b>English.</b> Tells an Egyptian wheat importer when to buy USD, from the forecast and the news only, never from payment deadlines. Each call scores eight drivers into a USD pressure index (−100 to +100), forecasts the ADIB sell rate for 1, 3 and 7 days, cites its sources, and is checked against the real rate 3 and 7 days later.</p>
+    <a class="cta" style="justify-self:start" href="https://claude.ai/artifact/QUhsx4wbq5ujuuKtq1XSpV" target="_blank" rel="noopener">Open the live Copilot ↗</a>
+  </div>
+</main>
+</body>
+</html>
