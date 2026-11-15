@@ -66,26 +66,31 @@ td{padding:6px 8px;border-bottom:1px solid var(--line)} .r{text-align:end}
 .sc{display:inline-block;min-width:2.8em;text-align:center;padding:1px 8px;border-radius:999px;font:500 .8rem var(--f-mono)}
 .sc.dn{background:var(--ok-soft);color:var(--ok)} .sc.up{background:var(--crit-soft);color:var(--crit)} .sc.fl{background:var(--surface);color:var(--muted)}
 .track{margin:0;font-size:.92rem}
-.url{font-family:var(--f-mono);font-size:.8rem;word-break:break-all;color:var(--muted)}
+.demo{display:inline-block;background:var(--crit-soft);color:var(--crit);font-size:.78rem;font-weight:600;padding:2px 10px;border-radius:999px}
+.who{display:flex;gap:8px;flex-wrap:wrap} .who span{background:var(--sunk);border-radius:999px;padding:3px 12px;font-size:.85rem}
+h2{font:600 1.1rem var(--f-display);margin:0}
+.hold{color:var(--ok);font-weight:600}
 </style>
 </head>
 <body>
 <main class="card">
-  <div class="brand"><div class="mark">$/E£</div><div><h1>USD Procurement Copilot · مساعد قرار شراء الدولار</h1><p class="sub">Mustafa Al-Khateib · O11 · Gold Grain Trading</p></div></div>
+  <div class="brand"><div class="mark">$/E£</div><div><h1>USD Procurement Copilot · مساعد قرار شراء الدولار</h1><p class="sub">Mustafa Al-Khateib · AI Copilot Diploma · O11</p></div></div>
 
-  <p class="lede">المساعد بيقول لمستورد قمح مصري إمتى يدبّر الدولار، بناءً على التوقع والأخبار بس، مش على مواعيد السداد. وبيسجّل كل قرار ويراجعه بعد 3 و7 أيام عشان تعرف تثق فيه قد إيه.</p>
+  <p class="lede">أي تاجر أو مستورد في مصر عنده مدفوعات بالدولار بيسأل نفس السؤال: أدبّر الدولار النهارده ولا أستنى؟ المساعد بيجاوب على السؤال ده من التوقع والأخبار بس، مش من مواعيد السداد. وبيسجّل كل قرار ويراجعه بعد 3 و7 أيام عشان تعرف تثق فيه قد إيه.</p>
+
+  <div class="who"><span>مستوردين سلع غذائية</span><span>حديد ومواد بناء</span><span>إلكترونيات وقطع غيار</span><span>أدوية وخامات</span><span>أي تاجر بيدفع بالدولار</span></div>
 
   <div class="calls"><span class="chip w">استنى — ما تدبّرش</span><span class="chip t">دبّر دفعة</span><span class="chip b">دبّر بكل فلوسك</span></div>
 
   <ul>
-    <li>مؤشر ضغط على الدولار من −100 لـ+100 من 8 عوامل: الأموال الساخنة (الأجانب في الأذون)، الفائدة، الفيدرالي، البترول، إيران والمنطقة، صندوق النقد، الاقتصاد، وحركة السعر.</li>
-    <li>توقع لسعر بيع ADIB بكرة، وبعد 3 أيام، وبعد أسبوع، بنطاق.</li>
+    <li>مؤشر ضغط على الدولار من −100 لـ+100 من 8 عوامل: الأموال الساخنة (الأجانب في الأذون)، الفائدة، الفيدرالي، البترول، المنطقة، صندوق النقد، الاقتصاد، وحركة السعر.</li>
+    <li>توقع لسعر بيع البنك بكرة، وبعد 3 أيام، وبعد أسبوع، بنطاق.</li>
     <li>قراءة جديدة 3 مرات يومياً (الأحد – الخميس) بمصادر لكل خبر، وإشعار على الموبايل.</li>
-    <li>سجل دقة لكل قرار، وتنبيهات آخر يوم سداد للعلم بس.</li>
+    <li>سجل دقة لكل قرار، وتنبيه آخر يوم سداد للعلم بس.</li>
   </ul>
 
   <section class="snap" aria-label="آخر قرار">
-    <div class="snap-head"><span class="eyebrow">آخر قرار · الأحد 15 نوفمبر 2026 · 9:27 ص</span><span class="chip w">استنى — ما تدبّرش</span></div>
+    <div class="snap-head"><span class="eyebrow">آخر قراءة للسوق · الأحد 15 نوفمبر 2026 · 9:27 ص</span><span class="chip w">استنى — ما تدبّرش</span></div>
     <p class="snap-why">الأجانب اشتروا أذون خزانة بحوالي 345 مليون دولار يوم 12 نوفمبر، والسعر العالمي ثابت حوالي 53.43. التضخم الأمريكي العالي بيدعم الدولار، فالصورة مختلطة شوية، لكن الكفة مع الانتظار.</p>
     <div class="gauge" aria-label="مؤشر الضغط على الدولار −44">
       <div class="g-meta"><span>مؤشر الضغط على الدولار</span><b class="num">−44</b><span class="chip t">الثقة 60%</span></div>
@@ -93,7 +98,7 @@ td{padding:6px 8px;border-bottom:1px solid var(--line)} .r{text-align:end}
       <div class="ends"><span>−100 الدولار ينزل</span><span>الدولار يطلع +100</span></div>
     </div>
     <div class="tiles">
-      <div class="tile"><div class="k">البنك الأهلي الآن</div><div class="v num">53.37</div><div class="s">السعر العالمي 53.43</div></div>
+      <div class="tile"><div class="k">سعر البيع الآن</div><div class="v num">53.37</div><div class="s">العالمي 53.43</div></div>
       <div class="tile"><div class="k">بكرة</div><div class="v num">53.46</div><div class="s">52.86 – 54.07</div></div>
       <div class="tile"><div class="k">بعد 3 أيام</div><div class="v num">53.39</div><div class="s">52.35 – 54.44</div></div>
       <div class="tile"><div class="k">بعد أسبوع</div><div class="v num">53.25</div><div class="s">51.66 – 54.85</div></div>
@@ -104,22 +109,33 @@ td{padding:6px 8px;border-bottom:1px solid var(--line)} .r{text-align:end}
         <tr><td>الأموال الساخنة (الأجانب في الأذون)</td><td><span class="sc dn">−2</span></td><td class="r num">25%</td></tr>
         <tr><td>فائدة المركزي وعائد الأذون</td><td><span class="sc dn">−1.5</span></td><td class="r num">15%</td></tr>
         <tr><td>التضخم الأمريكي والفيدرالي</td><td><span class="sc up">+1.5</span></td><td class="r num">15%</td></tr>
-        <tr><td>إيران وهرمز والمنطقة</td><td><span class="sc dn">−1</span></td><td class="r num">15%</td></tr>
+        <tr><td>التوترات في المنطقة</td><td><span class="sc dn">−1</span></td><td class="r num">15%</td></tr>
         <tr><td>أسعار البترول</td><td><span class="sc dn">−1</span></td><td class="r num">10%</td></tr>
         <tr><td>صندوق النقد والبنك الدولي والاحتياطي</td><td><span class="sc dn">−1</span></td><td class="r num">10%</td></tr>
         <tr><td>الاقتصاد الحقيقي وتقييم الجنيه</td><td><span class="sc fl">0</span></td><td class="r num">5%</td></tr>
         <tr><td>حركة السعر</td><td><span class="sc dn">−0.5</span></td><td class="r num">5%</td></tr>
       </tbody>
     </table></div>
-    <p class="track"><b>سجل الدقة:</b> 4 من 4 قرارات "استنى" (10 و12 نوفمبر) اتراجعت بعد 3 أيام وطلعت صح: سعر بيع ADIB كان 54.05 ووصل حوالي 53.50.</p>
+    <p class="track"><b>سجل الدقة:</b> 4 من 4 قرارات "استنى" (10 و12 نوفمبر) اتراجعت بعد 3 أيام وطلعت صح: سعر البيع كان 54.05 ونزل لحوالي 53.50.</p>
   </section>
 
-  <a class="cta" href="https://claude.ai/artifact/QUhsx4wbq5ujuuKtq1XSpV" target="_blank" rel="noopener">افتح النسخة الحية من المساعد ↗</a>
-  <span class="url">claude.ai/artifact/QUhsx4wbq5ujuuKtq1XSpV · البيانات الحية بتظهر بعد تسجيل الدخول بحساب Claude</span>
+  <section class="snap" aria-label="مثال تطبيقي">
+    <div class="snap-head"><h2>مثال: شركة استيراد افتراضية</h2><span class="demo">بيانات تجريبية</span></div>
+    <p class="snap-why" style="color:var(--muted);font-size:.92rem">الأرقام دي لتوضيح الفكرة بس، ومش بيانات شركة حقيقية. المساعد بياخد مدفوعات الشركة بالدولار ويطبّق عليها قرار السوق.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>الشحنة</th><th class="r">المبلغ</th><th>آخر يوم سداد</th><th>القرار النهارده</th></tr></thead>
+      <tbody>
+        <tr><td>زيت طعام · 2 حاوية</td><td class="r num">$180,000</td><td class="num">24 نوفمبر</td><td class="hold">استنى</td></tr>
+        <tr><td>حديد تسليح · 1,200 طن</td><td class="r num">$720,000</td><td class="num">27 نوفمبر</td><td class="hold">استنى</td></tr>
+        <tr><td>قطع غيار سيارات</td><td class="r num">$95,000</td><td class="num">2 ديسمبر</td><td class="hold">استنى</td></tr>
+        <tr><td>أجهزة كهربائية</td><td class="r num">$260,000</td><td class="num">9 ديسمبر</td><td class="hold">استنى</td></tr>
+      </tbody>
+    </table></div>
+    <p class="track">الإجمالي $1,255,000. لو السعر نزل 10 قروش بس، الشركة توفّر حوالي <b class="num">125,500</b> جنيه. ولو الإشارة قلبت لـ"دبّر"، المساعد يقولك تشتري قد إيه دلوقتي.</p>
+  </section>
 
   <div class="en">
-    <p style="margin:0"><b>English.</b> Tells an Egyptian wheat importer when to buy USD, from the forecast and the news only, never from payment deadlines. Each call scores eight drivers into a USD pressure index (−100 to +100), forecasts the ADIB sell rate for 1, 3 and 7 days, cites its sources, and is checked against the real rate 3 and 7 days later.</p>
-    <a class="cta" style="justify-self:start" href="https://claude.ai/artifact/QUhsx4wbq5ujuuKtq1XSpV" target="_blank" rel="noopener">Open the live Copilot ↗</a>
+    <p style="margin:0"><b>English.</b> Tells any Egyptian importer or trader with USD payments when to buy dollars, from the forecast and the news only, never from payment deadlines. Each call scores eight drivers into a USD pressure index (−100 to +100), forecasts the bank sell rate for 1, 3 and 7 days, cites its sources, and is checked against the real rate 3 and 7 days later. The company example above uses sample data.</p>
   </div>
 </main>
 </body>
